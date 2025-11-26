@@ -1,163 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Divide & Conquer Visualizer</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Divide & Conquer — Deep Dive</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body { margin:0; font-family:'Poppins', sans-serif; background:#f5f7fa; color:#222; }
+    header { background: linear-gradient(135deg, #4e8cff, #6a5af9); color:white; padding:60px 20px; text-align:center; }
+    header h1 { margin:0; font-size:2.8rem; }
+    header p { max-width:700px; margin:20px auto; font-size:1.15rem; }
+    a.btn { color:white; background:#6a5af9; padding:10px 20px; border-radius:6px; text-decoration:none; }
+    .section { max-width:900px; margin:60px auto; padding:0 20px; }
+    h2 { margin-top:0; text-align:center; }
+    .diagram { display:block; max-width:100%; margin:20px auto; }
+    .subsection { margin-top:40px; }
+    .pros-cons { display:flex; flex-wrap:wrap; gap:20px; }
+    .pros-cons div { flex:1 1 300px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.05); }
+    .algorithm-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:24px; margin-top:30px; }
+    .card { background:white; border-radius:10px; box-shadow:0 4px 20px rgba(0,0,0,0.05); overflow:hidden; }
+    .card img { width:100%; height:auto; display:block; }
+    .card-body { padding:20px; }
+    .card-body h3 { margin-top:0; }
+    @media (prefers-color-scheme: dark) {
+      body { background:#1e1e1e; color:#ddd; }
+      .card, .pros-cons div { background:#2c2c2c; box-shadow:0 2px 10px rgba(0,0,0,0.8); }
+      header { background: linear-gradient(135deg, #3b6dd9, #5845c6); }
+    }
+  </style>
 </head>
-
 <body>
-  <!-- ===== Header Section ===== -->
-  <header class="hero">
-    <div class="hero-content">
-      <h1>Divide & Conquer Visualizer</h1>
-      <p>
-        Explore how complex problems can be solved efficiently using the
-        <strong>Divide & Conquer</strong> algorithmic paradigm. Learn how
-        algorithms like <em>Merge Sort</em>, <em>Binary Search</em>, and the
-        <em>Closest Pair of Points</em> use this strategy to break problems
-        down, conquer them recursively, and combine results to form powerful
-        solutions.
-      </p>
-      <a href="#algorithms" class="btn-primary">Start Exploring</a>
-    </div>
+
+  <header>
+    <h1>Divide & Conquer</h1>
+    <p>
+      Divide & Conquer is a foundational algorithmic paradigm in computer science.  
+      It helps us solve big, complex problems by splitting them into manageable subproblems, solving each, and combining the results gracefully.  
+      Explore in-depth, understand trade-offs, and see real examples (Merge Sort, Binary Search, Closest Pair).
+    </p>
+    <a href="#definition" class="btn">Start Learning</a>
   </header>
 
-  <!-- ===== About Section ===== -->
-  <section id="about" class="section">
-    <h2> What is Divide & Conquer?</h2>
+  <section id="definition" class="section">
+    <h2>Definition & Core Idea</h2>
     <p>
-      <strong>Divide & Conquer</strong> is a fundamental problem-solving
-      strategy in computer science. The idea is simple:
+      In a <strong>divide and conquer</strong> algorithm, we take a large instance of a problem and:
     </p>
-
     <ol>
-      <li><strong>Divide:</strong> Break the main problem into smaller subproblems.</li>
-      <li><strong>Conquer:</strong> Solve each subproblem recursively.</li>
-      <li><strong>Combine:</strong> Merge or combine sub-solutions to form the final answer.</li>
+      <li><strong>Divide:</strong> Split the original problem into smaller subproblems, typically of the same type (but smaller size).</li>
+      <li><strong>Conquer:</strong> Solve each subproblem  usually recursively, until the subproblems are simple (base cases).</li>
+      <li><strong>Combine:</strong> Merge the sub-solutions into a solution for the original problem.</li>
+      <li><strong>Base Case:</strong> Stop recursion when subproblem is solved directly without further dividing.</li>
     </ol>
 
-    <p>
-      This method allows us to handle complex tasks efficiently, especially
-      when the subproblems are smaller instances of the same type as the
-      original problem.
-    </p>
+    <img class="diagram" src="https://cdn.savemyexams.com/cdn-cgi/image/f=auto,width=1920/uploads/2024/01/divide-and-conquer.png" alt="Divide and Conquer Conceptual Diagram">
 
-    <div class="image-container">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Merge-sort-example-300px.gif" alt="Divide and Conquer Example - Merge Sort">
-      <p class="caption">Example: Merge Sort recursively splits and merges an array.</p>
+    <p>
+      This paradigm underlies many powerful algorithms from sorting and searching to geometry, signal processing, and large-number arithmetic. 
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Divide & Conquer: Strengths & Weaknesses</h2>
+    <div class="pros-cons">
+      <div>
+        <h3> Advantages</h3>
+        <ul>
+          <li><strong>Efficiency and scalability:</strong> Many D&C algorithms run in O(n log n) or better, far faster than naive O(n²) or worse. </li>
+          <li><strong>Parallelism-friendly:</strong> Independent subproblems can be solved simultaneously (on multiple cores or machines). </li>
+          <li><strong>Better memory/cache usage:</strong> Working on smaller subproblems can fit into CPU cache; reduces cache misses. </li>
+          <li><strong>Elegant & modular design:</strong> Breaking complex problems into simpler ones often yields simpler, maintainable, and reusable code. </li>
+        </ul>
+      </div>
+      <div>
+        <h3>Limitations & Trade-offs</h3>
+        <ul>
+          <li><strong>Recursion & stack overhead:</strong> Recursive calls consume stack memory; too deep recursion may risk stack overflow. </li>
+          <li><strong>Extra memory usage:</strong> Some D&C algorithms (like Merge Sort) require additional auxiliary space for merging. </li>
+          <li><strong>Not always optimal for small data:</strong> For small inputs, a simple loop or brute-force may be faster and simpler. </li>
+          <li><strong>Design complexity:</strong> Not all problems are naturally divisible; sometimes splitting and combining logic is difficult. </li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <!-- ===== Why It Matters Section ===== -->
-  <section id="importance" class="section alt">
-    <h2> Why Does It Matter?</h2>
-    <p>
-      Divide & Conquer is the foundation of many efficient algorithms that
-      power real-world systems:
-    </p>
-
+  <section class="section alt">
+    <h2>Real-World & Algorithmic Applications</h2>
+    <p>Here are some common uses of divide & conquer:</p>
     <ul>
-      <li> <strong>Merge Sort</strong> — Sorting data in O(n log n) time.</li>
-      <li><strong>Binary Search</strong> — Searching sorted lists in O(log n) time.</li>
-      <li> <strong>Closest Pair of Points</strong> — Used in GPS and mapping systems.</li>
-      <li> <strong>Fast Fourier Transform (FFT)</strong> — Enables music, signal, and video processing.</li>
+      <li><strong>Sorting:</strong> Merge Sort, Quicksort, etc. </li>
+      <li><strong>Searching:</strong> Binary Search on sorted arrays/lists. </li>
+      <li><strong>Geometric algorithms:</strong> Finding closest pair of points, computational geometry problems, spatial data structures. </li>
+      <li><strong>Large-number arithmetic / multiplication:</strong> E.g. Karatsuba algorithm for fast multiplication. </li>
+      <li><strong>Signal processing & transforms:</strong> Fast Fourier Transform (FFT) uses divide & conquer to process signals efficiently. </li>
+      <li><strong>Parallel data processing & big data analysis:</strong> Splitting large datasets into chunks, processing them independently, then merging results. </li>
     </ul>
+  </section>
 
-    <p>
-      These algorithms are crucial in fields like data analysis, cryptography,
-      computer vision, artificial intelligence, and real-time communication.
-    </p>
+  <section class="section">
+    <h2>Three Core Examples: Merge Sort, Binary Search, Closest Pair</h2>
+    <div class="algorithm-cards">
 
-    <div class="image-container">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Binary_search_into_array.png" alt="Binary Search Visualization">
-      <p class="caption">Binary Search halves the search space at each step.</p>
+      <div class="card">
+        <div class="card-body">
+          <h3>Merge Sort</h3>
+          <p>
+            A classic divide & conquer sorting algorithm. Recursively splits array into halves until single elements, then merges back in sorted order.  
+            Time complexity: O(n log n). Space: O(n) auxiliary. 
+          </p>
+          <a href="merge_sort.html" class="btn">Visualize</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h3>Binary Search</h3>
+          <p>
+            Efficient search algorithm on sorted arrays. Repeatedly divides the search interval in half until the target is found or interval is empty.  
+            Runs in O(log n). 
+          </p>
+          <a href="binary_search.html" class="btn">Visualize</a>
+        </div>
+      </div>
+
+      <div class="card">
+          <div class="card-body">
+        <div class="card-body">
+          <h3>Closest Pair of Points</h3>
+          <p>
+            A geometric problem: find the two nearest points among many in a plane.  
+            Using D&C, we sort by x-coordinate, split the set, recursively find closest pairs in halves, then examine a small “strip” across the dividing line for possible cross-pair — achieving O(n log n). 
+          </p>
+          <a href="closest_pair.html" class="btn">Visualize</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- ===== Algorithm Links Section ===== -->
-  <section id="algorithms" class="section">
-    <h2> Explore Divide & Conquer Algorithms</h2>
-    <p>Click on any algorithm to see it in action.</p>
-
-    <div class="algorithm-grid">
-      <div class="card">
-        <h3>Merge Sort</h3>
-        <p>Divide an array into halves, sort each half, and merge the results efficiently.</p>
-        <a href="merge_sort.html" class="btn-secondary">Visualize</a>
-      </div>
-
-      <div class="card">
-        <h3>Binary Search</h3>
-        <p>Recursively narrow down a sorted dataset to find a specific value quickly.</p>
-        <a href="binary_search.html" class="btn-secondary">Visualize</a>
-      </div>
-
-      <div class="card">
-        <h3>Closest Pair of Points</h3>
-        <p>Find the nearest two points among thousands efficiently — used in GPS and robotics.</p>
-        <a href="closest_pair.html" class="btn-secondary">Visualize</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Real-World Applications Section ===== -->
-  <section id="applications" class="section alt">
-    <h2> Real-World Applications</h2>
-    <p>
-      Divide & Conquer is not just theoretical — it powers the technology we use every day:
-    </p>
-
+  <section class="section alt">
+    <h2>When to Use Divide & Conquer</h2>
+    <p>Use D&C when:</p>
     <ul>
-      <li> <strong>Databases</strong> — Use merge sort and binary search for efficient querying.</li>
-      <li> <strong>GPS Systems</strong> — Use closest pair algorithms to calculate proximity.</li>
-      <li> <strong>Audio/Video Processing</strong> — FFTs use divide & conquer to analyze sound frequencies.</li>
-      <li> <strong>Machine Learning</strong> — Recursive models and data partitioning rely on the same principles.</li>
+      <li>Your problem can be broken into independent sub-problems.</li>
+      <li>The sub-problems are similar to the original problem (same type), allowing recursion.</li>
+      <li>The cost of dividing & combining is much less than solving the big problem directly.</li>
+      <li>Input size is large enough that the overhead pays off.</li>
+      <li>You care about scalability, performance, or potentially parallel execution.</li>
     </ul>
-
-    <div class="image-container">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/07/Fast_Fourier_transform_visualisation.gif" alt="Fast Fourier Transform Visualization">
-      <p class="caption">FFT — A Divide & Conquer algorithm that enables signal processing in real time.</p>
-    </div>
+    <p>Consider alternatives when:</p>
+    <ul>
+      <li>Input is small — simple or brute-force may be faster and simpler.</li>
+      <li>Recursion depth may exceed safe limits (stack overflow risk).</li>
+      <li>Merging or combining data is expensive (memory, copying) — sometimes in-place or iterative methods are better.</li>
+    </ul>
   </section>
 
-  <!-- ===== Summary Section ===== -->
-  <section id="summary" class="section">
-    <h2>Summary</h2>
-    <p>
-      Divide & Conquer is a cornerstone paradigm that combines simplicity,
-      recursion, and efficiency. By breaking problems into smaller, manageable
-      pieces, it helps computers solve massive challenges quickly.
-    </p>
-    <p><strong>Core steps:</strong> Divide → Conquer → Combine → Base Case</p>
-
-    <p>
-      Learn how these algorithms come to life by visiting the visualization
-      pages above. Experiment with data, observe recursive behavior, and
-      understand the performance that makes Divide & Conquer essential.
-    </p>
-
-    <a href="#algorithms" class="btn-primary">Explore Algorithms</a>
-  </section>
-
-  <!-- ===== Footer ===== -->
-  <footer>
-    <p>Created by Innocencia & Bianca| Divide & Conquer Visualizer © 2025</p>
-    <p>References:
-      <a href="https://visualgo.net/en/sorting">Visualgo</a>,
-      <a href="https://www.geeksforgeeks.org/">GeeksforGeeks</a>,
-      <a href="https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm">Wikipedia</a>
-    </p>
+  <footer class="section">
+    <p style="text-align:center; color:#555;">&copy; 2025 Divide & Conquer Visualizer | References include Wikipedia, GeeksforGeeks, Algorithm textbooks.</p>
   </footer>
-
-  <script src="script.js"></script>
-  <script src="voice.js" defer></script>
 
 </body>
 </html>

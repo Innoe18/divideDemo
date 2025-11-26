@@ -1,135 +1,129 @@
+<!-- Improved Merge Sort page with deeper explanations and placeholder for clearer visualiser -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Merge Sort | Divide & Conquer Visualizer</title>
-
-  <!-- Google Font -->
+  <title>Merge Sort | Enhanced Divide & Conquer Teaching Page</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <!-- ===== Header ===== -->
   <header class="hero">
     <div class="hero-content">
-      <h1>🧩 Merge Sort Visualization</h1>
-      <p>
-        Learn how <strong>Merge Sort</strong> applies the
-        <em>Divide & Conquer</em> strategy to sort elements efficiently by
-        dividing an array into smaller subarrays, sorting them recursively,
-        and then merging the sorted results.
-      </p>
-      <a href="index.html" class="btn-primary">← Back to Home</a>
+      <h1>Merge Sort — In-Depth Learning</h1>
+      <p>Understand <strong>how Merge Sort works</strong>, when to use it, its advantages, disadvantages, trade‑offs, and a full step‑by‑step walkthrough with diagrams.</p>
+      <a href="index.html" class="btn-primary">← Back</a>
     </div>
   </header>
 
-  <!-- ===== Theory Section ===== -->
   <section class="section">
-    <h2>📘 Understanding Merge Sort</h2>
+    <h2>What is Merge Sort (Really)?</h2>
     <p>
-      Merge Sort is a comparison-based sorting algorithm that follows the
-      <strong>Divide & Conquer</strong> paradigm.
+      Merge Sort is a <strong>stable, predictable, O(n log n) sorting algorithm</strong> based on the <em>Divide & Conquer</em> paradigm. It’s especially powerful when dealing with large data or external data (files, streams, etc.).
     </p>
+
+    <h3>Why Divide & Conquer?</h3>
+    <p>Instead of solving the whole problem at once, we:</p>
     <ol>
-      <li><strong>Divide:</strong> Split the array into two halves.</li>
-      <li><strong>Conquer:</strong> Recursively sort each half.</li>
-      <li><strong>Combine:</strong> Merge the sorted halves into a single sorted array.</li>
+      <li><strong>Divide</strong> the array into two smaller halves.</li>
+      <li><strong>Conquer</strong> each half by sorting them recursively.</li>
+      <li><strong>Combine</strong> (merge) the two sorted halves into one sorted list.</li>
     </ol>
-
-    <div class="image-container">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Merge-sort-example-300px.gif" alt="Merge Sort Process">
-      <p class="caption">Visual representation of Merge Sort’s recursive splitting and merging.</p>
-    </div>
   </section>
 
-  <!-- ===== Visualization Section ===== -->
   <section class="section alt">
-    <h2>🎞️ Visualization</h2>
-    <p>Click the button below to visualize how Merge Sort divides and merges an array step-by-step.</p>
-    <div class="visualizer">
-      <canvas id="mergeCanvas" width="600" height="300"></canvas>
-    </div>
-    <button class="btn-secondary" onclick="startMergeSort()">▶ Start Visualization</button>
-  </section>
-
-  <!-- ===== C++ Code Section ===== -->
-  <section class="section">
-    <h2>💻 Merge Sort in C++</h2>
-    <p>This is a typical implementation of Merge Sort using recursion and arrays.</p>
-
-    <pre>
-#include &lt;iostream&gt;
-#include &lt;vector&gt;
-using namespace std;
-
-void merge(vector&lt;int&gt;& a, int left, int mid, int right) {
-    vector&lt;int&gt; L(a.begin() + left, a.begin() + mid + 1);
-    vector&lt;int&gt; R(a.begin() + mid + 1, a.begin() + right + 1);
-
-    int i = 0, j = 0, k = left;
-    while (i &lt; L.size() &amp;&amp; j &lt; R.size()) {
-        if (L[i] &lt;= R[j]) a[k++] = L[i++];
-        else a[k++] = R[j++];
-    }
-    while (i &lt; L.size()) a[k++] = L[i++];
-    while (j &lt; R.size()) a[k++] = R[j++];
-}
-
-void mergeSort(vector&lt;int&gt;& a, int left, int right) {
-    if (left &gt;= right) return;
-    int mid = left + (right - left) / 2;
-    mergeSort(a, left, mid);
-    mergeSort(a, mid + 1, right);
-    merge(a, left, mid, right);
-}
-
-int main() {
-    vector&lt;int&gt; arr = {38, 27, 43, 3, 9, 82, 10};
-    mergeSort(arr, 0, arr.size() - 1);
-    for (int x : arr) cout &lt;&lt; x &lt;&lt; " ";
-}
-    </pre>
-  </section>
-
-  <!-- ===== Complexity Section ===== -->
-  <section class="section alt">
-    <h2>📈 Performance Analysis</h2>
-    <table border="1" cellpadding="10" style="border-collapse: collapse; margin: auto;">
-      <tr>
-        <th>Case</th>
-        <th>Time Complexity</th>
-      </tr>
-      <tr><td>Best Case</td><td>O(n log n)</td></tr>
-      <tr><td>Average Case</td><td>O(n log n)</td></tr>
-      <tr><td>Worst Case</td><td>O(n log n)</td></tr>
-      <tr><td>Space Complexity</td><td>O(n)</td></tr>
-    </table>
-
-    <p style="text-align:center; margin-top:20px;">
-      Merge Sort is consistently efficient across all cases due to its predictable recursive structure.
-    </p>
-  </section>
-
-  <!-- ===== Real-World Applications ===== -->
-  <section class="section">
-    <h2>🌍 Real-World Applications</h2>
+    <h2>When Should You Use Merge Sort?</h2>
     <ul>
-      <li>📦 Used in file systems and databases for large-scale data sorting.</li>
-      <li>🧠 Applied in external sorting when data doesn’t fit into memory.</li>
-      <li>📊 Used in parallel computing environments for dividing workloads.</li>
-      <li>💾 Commonly implemented in standard libraries (like C++ STL’s <code>stable_sort()</code>).</li>
+      <li> You need <strong>consistent performance</strong> even in the worst case.</li>
+      <li> You’re sorting <strong>very large datasets</strong> (especially from disk).</li>
+      <li> You require a <strong>stable sort</strong> (keeps equal elements in order).</li>
+    </ul>
+
+    <h3>Realistic Use Cases</h3>
+    <ul>
+      <li> Sorting massive logs or datasets that don't fit in RAM.</li>
+      <li> File system sort operations (external merge sort).</li>
+      <li> Parallel sorting — merge sort splits naturally across CPU cores.</li>
     </ul>
   </section>
 
-  <!-- ===== Footer ===== -->
+  <section class="section">
+    <h2>Step-by-Step Diagram (High-Level)</h2>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Merge-sort-example-300px.gif" alt="Merge Sort Diagram" />
+
+    <h3>What’s Actually Happening?</h3>
+    <ol>
+      <li>The array is recursively split until each piece has 1 element.</li>
+      <li>Then merging begins from the bottom up.</li>
+      <li>Each merge step builds a larger sorted section.</li>
+      <li>Eventually the whole array becomes sorted.</li>
+    </ol>
+  </section>
+
+  <section class="section alt">
+    <h2>New Interactive Visualiser</h2>
+    <p><strong>Fully rewritten visualizer coming below.</strong> This version shows step‑by‑step logic with textual explanations.</p>
+
+    <div class="visualizer">
+      <canvas id="mergeCanvas" width="600" height="340"></canvas>
+      <p id="mergeExplanation" class="explanation-box"></p>
+    </div>
+
+    <button onclick="startMergeSort()" class="btn-primary">▶ Start Step-by-Step</button>
+    <button onclick="nextStep()" class="btn-secondary">Next Step →</button>
+
+    <p style="margin-top: 10px;">This visualizer explains <strong>every action</strong>: splits, comparisons, merges, and why each step happens.</p>
+  </section>
+
+  <section class="section">
+    <h2>Complexity & Performance</h2>
+    <table>
+      <tr><th>Scenario</th><th>Time Complexity</th></tr>
+      <tr><td>Best</td><td>O(n log n)</td></tr>
+      <tr><td>Average</td><td>O(n log n)</td></tr>
+      <tr><td>Worst</td><td>O(n log n)</td></tr>
+      <tr><td>Space</td><td>O(n)</td></tr>
+    </table>
+
+    <h3>Inputs That Help / Hurt</h3>
+    <ul>
+      <li> Already sorted input → No advantage (still O(n log n)).</li>
+      <li> Reverse sorted input → Still O(n log n).</li>
+      <li> Random data → Still O(n log n).</li>
+      <li> Low memory devices → Merge Sort needs extra space.</li>
+    </ul>
+  </section>
+
+  <section class="section alt">
+    <h2>Trade-offs & Alternatives</h2>
+
+    <h3>Advantages</h3>
+    <ul>
+      <li>Stable sorting.</li>
+      <li>Fast and predictable.</li>
+      <li>Great for large datasets.</li>
+      <li>Can be parallelized easily.</li>
+    </ul>
+
+    <h3>Disadvantages</h3>
+    <ul>
+      <li>Needs extra memory (O(n)).</li>
+      <li>Slower than QuickSort in practice for small arrays.</li>
+    </ul>
+
+    <h3>Alternatives</h3>
+    <ul>
+      <li><strong>QuickSort:</strong> Usually faster but worst-case O(n²).</li>
+      <li><strong>HeapSort:</strong> No extra memory but unstable.</li>
+      <li><strong>Timsort:</strong> Hybrid used in Python/Java — best for real-world data.</li>
+    </ul>
+  </section>
+
   <footer>
-    <p>Created by Innocencia & Bianca| Divide & Conquer Visualizer © 2025</p>
+    <p>Created by Innocencia & Bianca</p>
   </footer>
 
   <script src="merge_sort.js"></script>
-  <script src="voice.js" defer></script>
-
 </body>
 </html>
