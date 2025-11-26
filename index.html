@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Divide & Conquer Visualizer</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- ===== Header Section ===== -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Divide & Conquer Visualizer</h1>
+      <p>
+        Explore how complex problems can be solved efficiently using the
+        <strong>Divide & Conquer</strong> algorithmic paradigm. Learn how
+        algorithms like <em>Merge Sort</em>, <em>Binary Search</em>, and the
+        <em>Closest Pair of Points</em> use this strategy to break problems
+        down, conquer them recursively, and combine results to form powerful
+        solutions.
+      </p>
+      <a href="#algorithms" class="btn-primary">Start Exploring</a>
+    </div>
+  </header>
+
+  <!-- ===== About Section ===== -->
+  <section id="about" class="section">
+    <h2> What is Divide & Conquer?</h2>
+    <p>
+      <strong>Divide & Conquer</strong> is a fundamental problem-solving
+      strategy in computer science. The idea is simple:
+    </p>
+
+    <ol>
+      <li><strong>Divide:</strong> Break the main problem into smaller subproblems.</li>
+      <li><strong>Conquer:</strong> Solve each subproblem recursively.</li>
+      <li><strong>Combine:</strong> Merge or combine sub-solutions to form the final answer.</li>
+    </ol>
+
+    <p>
+      This method allows us to handle complex tasks efficiently, especially
+      when the subproblems are smaller instances of the same type as the
+      original problem.
+    </p>
+
+    <div class="image-container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Merge-sort-example-300px.gif" alt="Divide and Conquer Example - Merge Sort">
+      <p class="caption">Example: Merge Sort recursively splits and merges an array.</p>
+    </div>
+  </section>
+
+  <!-- ===== Why It Matters Section ===== -->
+  <section id="importance" class="section alt">
+    <h2> Why Does It Matter?</h2>
+    <p>
+      Divide & Conquer is the foundation of many efficient algorithms that
+      power real-world systems:
+    </p>
+
+    <ul>
+      <li> <strong>Merge Sort</strong> — Sorting data in O(n log n) time.</li>
+      <li><strong>Binary Search</strong> — Searching sorted lists in O(log n) time.</li>
+      <li> <strong>Closest Pair of Points</strong> — Used in GPS and mapping systems.</li>
+      <li> <strong>Fast Fourier Transform (FFT)</strong> — Enables music, signal, and video processing.</li>
+    </ul>
+
+    <p>
+      These algorithms are crucial in fields like data analysis, cryptography,
+      computer vision, artificial intelligence, and real-time communication.
+    </p>
+
+    <div class="image-container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Binary_search_into_array.png" alt="Binary Search Visualization">
+      <p class="caption">Binary Search halves the search space at each step.</p>
+    </div>
+  </section>
+
+  <!-- ===== Algorithm Links Section ===== -->
+  <section id="algorithms" class="section">
+    <h2> Explore Divide & Conquer Algorithms</h2>
+    <p>Click on any algorithm to see it in action.</p>
+
+    <div class="algorithm-grid">
+      <div class="card">
+        <h3>Merge Sort</h3>
+        <p>Divide an array into halves, sort each half, and merge the results efficiently.</p>
+        <a href="merge_sort.html" class="btn-secondary">Visualize</a>
+      </div>
+
+      <div class="card">
+        <h3>Binary Search</h3>
+        <p>Recursively narrow down a sorted dataset to find a specific value quickly.</p>
+        <a href="binary_search.html" class="btn-secondary">Visualize</a>
+      </div>
+
+      <div class="card">
+        <h3>Closest Pair of Points</h3>
+        <p>Find the nearest two points among thousands efficiently — used in GPS and robotics.</p>
+        <a href="closest_pair.html" class="btn-secondary">Visualize</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Real-World Applications Section ===== -->
+  <section id="applications" class="section alt">
+    <h2> Real-World Applications</h2>
+    <p>
+      Divide & Conquer is not just theoretical — it powers the technology we use every day:
+    </p>
+
+    <ul>
+      <li> <strong>Databases</strong> — Use merge sort and binary search for efficient querying.</li>
+      <li> <strong>GPS Systems</strong> — Use closest pair algorithms to calculate proximity.</li>
+      <li> <strong>Audio/Video Processing</strong> — FFTs use divide & conquer to analyze sound frequencies.</li>
+      <li> <strong>Machine Learning</strong> — Recursive models and data partitioning rely on the same principles.</li>
+    </ul>
+
+    <div class="image-container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/07/Fast_Fourier_transform_visualisation.gif" alt="Fast Fourier Transform Visualization">
+      <p class="caption">FFT — A Divide & Conquer algorithm that enables signal processing in real time.</p>
+    </div>
+  </section>
+
+  <!-- ===== Summary Section ===== -->
+  <section id="summary" class="section">
+    <h2>Summary</h2>
+    <p>
+      Divide & Conquer is a cornerstone paradigm that combines simplicity,
+      recursion, and efficiency. By breaking problems into smaller, manageable
+      pieces, it helps computers solve massive challenges quickly.
+    </p>
+    <p><strong>Core steps:</strong> Divide → Conquer → Combine → Base Case</p>
+
+    <p>
+      Learn how these algorithms come to life by visiting the visualization
+      pages above. Experiment with data, observe recursive behavior, and
+      understand the performance that makes Divide & Conquer essential.
+    </p>
+
+    <a href="#algorithms" class="btn-primary">Explore Algorithms</a>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>Created by Innocencia & Bianca| Divide & Conquer Visualizer © 2025</p>
+    <p>References:
+      <a href="https://visualgo.net/en/sorting">Visualgo</a>,
+      <a href="https://www.geeksforgeeks.org/">GeeksforGeeks</a>,
+      <a href="https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm">Wikipedia</a>
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="voice.js" defer></script>
+
+</body>
+</html>

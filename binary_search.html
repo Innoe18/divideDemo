@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Binary Search | Divide & Conquer Visualizer</title>
+
+  <!-- Fonts & Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- ===== Header ===== -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>🔍 Binary Search Visualization</h1>
+      <p>
+        Explore how <strong>Binary Search</strong> uses the
+        <em>Divide & Conquer</em> strategy to find elements efficiently
+        by repeatedly halving the search space until the target is found.
+      </p>
+      <a href="index.html" class="btn-primary">← Back to Home</a>
+    </div>
+  </header>
+
+  <!-- ===== Theory Section ===== -->
+  <section class="section">
+    <h2>📘 Understanding Binary Search</h2>
+    <p>
+      <strong>Binary Search</strong> is one of the simplest yet most powerful
+      examples of the Divide & Conquer paradigm. It operates on sorted data
+      and repeatedly divides the search interval in half.
+    </p>
+
+    <ol>
+      <li><strong>Divide:</strong> Find the middle element of the array.</li>
+      <li><strong>Conquer:</strong> Check if the target lies in the left or right half.</li>
+      <li><strong>Combine:</strong> Recursively continue searching in the correct half until the target is found or the range becomes empty.</li>
+    </ol>
+
+    <div class="image-container">
+      <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240506155201/binnary-search-.webp" alt="Binary Search Visualization">
+      <p class="caption">Binary Search repeatedly halves the array to locate the target value.</p>
+    </div>
+  </section>
+
+  <!-- ===== Visualization Section ===== -->
+  <section class="section alt">
+    <h2>🎞️ Visualization</h2>
+    <p>Click the button below to watch how Binary Search narrows down the array.</p>
+
+    <div class="visualizer">
+      <canvas id="binaryCanvas" width="600" height="250"></canvas>
+    </div>
+
+    <div class="controls">
+      <label for="target">🔢 Target Value:</label>
+      <input type="number" id="target" value="45" />
+      <button class="btn-secondary" onclick="startBinarySearch()">▶ Start Search</button>
+    </div>
+  </section>
+
+  <!-- ===== C++ Code Section ===== -->
+  <section class="section">
+    <h2>💻 Binary Search in C++</h2>
+    <p>This is the standard recursive implementation of Binary Search.</p>
+
+    <pre>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int binarySearch(vector&lt;int&gt;& arr, int left, int right, int target) {
+    if (left &gt; right) return -1;
+
+    int mid = left + (right - left) / 2;
+    if (arr[mid] == target) return mid;
+
+    if (arr[mid] &gt; target)
+        return binarySearch(arr, left, mid - 1, target);
+    else
+        return binarySearch(arr, mid + 1, right, target);
+}
+
+int main() {
+    vector&lt;int&gt; arr = {5, 10, 20, 35, 45, 60, 75, 90};
+    int target = 45;
+
+    int result = binarySearch(arr, 0, arr.size() - 1, target);
+    if (result != -1)
+        cout &lt;&lt; "Element found at index " &lt;&lt; result;
+    else
+        cout &lt;&lt; "Element not found.";
+}
+    </pre>
+  </section>
+
+  <!-- ===== Complexity Section ===== -->
+  <section class="section alt">
+    <h2>📈 Performance Analysis</h2>
+    <table border="1" cellpadding="10" style="border-collapse: collapse; margin: auto;">
+      <tr>
+        <th>Case</th>
+        <th>Time Complexity</th>
+      </tr>
+      <tr><td>Best Case</td><td>O(1)</td></tr>
+      <tr><td>Average Case</td><td>O(log n)</td></tr>
+      <tr><td>Worst Case</td><td>O(log n)</td></tr>
+      <tr><td>Space Complexity</td><td>O(1) iterative / O(log n) recursive</td></tr>
+    </table>
+
+    <p style="text-align:center; margin-top:20px;">
+      Binary Search is extremely efficient for sorted data — reducing search space exponentially.
+    </p>
+  </section>
+
+  <!-- ===== Real-World Applications ===== -->
+  <section class="section">
+    <h2>🌍 Real-World Applications</h2>
+    <ul>
+      <li>🔎 Searching large databases and files efficiently.</li>
+      <li>📚 Used in libraries like <code>std::lower_bound()</code> and <code>std::binary_search()</code>.</li>
+      <li>🎮 Applied in game engines for spatial search and AI decision trees.</li>
+      <li>📈 Used in scheduling, stock analysis, and predictive algorithms.</li>
+    </ul>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>Created by Innocencia & Bianca | Divide & Conquer Visualizer © 2025</p>
+  </footer>
+
+  <script src="binary_search.js"></script>
+  <script src="voice.js" defer></script>
+
+</body>
+</html>

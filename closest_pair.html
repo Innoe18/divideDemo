@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Closest Pair of Points | Divide & Conquer Visualizer</title>
+
+  <!-- Fonts & Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- ===== Header ===== -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>📍 Closest Pair of Points Visualization</h1>
+      <p>
+        Explore how the <strong>Divide & Conquer</strong> algorithm efficiently finds
+        the two points closest to each other in a plane — an essential technique
+        in computational geometry, GPS mapping, and robotics.
+      </p>
+      <a href="index.html" class="btn-primary">← Back to Home</a>
+    </div>
+  </header>
+
+  <!-- ===== Theory Section ===== -->
+  <section class="section">
+    <h2>📘 Understanding the Problem</h2>
+    <p>
+      Given a set of points on a 2D plane, the goal is to find the pair of points
+      that are closest together based on Euclidean distance.
+    </p>
+
+    <p>
+      <strong>Brute Force Approach:</strong> Compare every pair of points — 
+      this requires O(n²) comparisons and becomes inefficient for large datasets.
+    </p>
+
+    <p>
+      <strong>Divide & Conquer Approach:</strong>
+      - Sort points by their x-coordinate.  
+      - Split into left and right halves.  
+      - Recursively find the closest pairs in each half.  
+      - Check the narrow strip near the dividing line for possible closer pairs.  
+      This reduces complexity to O(n log n).
+    </p>
+
+    <div class="image-container">
+      <img src="https://media.geeksforgeeks.org/wp-content/uploads/mindis.png" alt="Divide step of closest pair">
+      <p class="caption">Points are divided by a vertical line and processed recursively.</p>
+    </div>
+  </section>
+
+  <!-- ===== Visualization Section ===== -->
+  <section class="section alt">
+    <h2>🎞️ Visualization</h2>
+    <p>Click below to generate random points and visualize the closest pair search.</p>
+
+    <div class="visualizer">
+      <canvas id="pairCanvas" width="600" height="400"></canvas>
+    </div>
+
+    <div class="controls">
+      <button class="btn-secondary" onclick="generatePoints()">🔹 Generate Points</button>
+      <button class="btn-secondary" onclick="startClosestPair()">▶ Find Closest Pair</button>
+    </div>
+  </section>
+
+  <!-- ===== C++ Code Section ===== -->
+  <section class="section">
+    <h2>💻 Closest Pair in C++</h2>
+    <p>This Divide & Conquer approach reduces complexity from O(n²) to O(n log n).</p>
+
+    <pre>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;cmath&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+struct Point { double x, y; };
+
+double dist(Point p1, Point p2) {
+    return sqrt((p1.x - p2.x)*(p1.x - p2.x) +
+                (p1.y - p2.y)*(p1.y - p2.y));
+}
+
+double bruteForce(vector&lt;Point&gt;& pts, int left, int right) {
+    double minDist = 1e9;
+    for (int i = left; i &lt; right; ++i)
+        for (int j = i + 1; j &lt;= right; ++j)
+            minDist = min(minDist, dist(pts[i], pts[j]));
+    return minDist;
+}
+
+double stripClosest(vector&lt;Point&gt;& strip, double d) {
+    double minDist = d;
+    sort(strip.begin(), strip.end(),
+         [](Point a, Point b){ return a.y &lt; b.y; });
+    for (int i = 0; i &lt; strip.size(); ++i)
+        for (int j = i + 1; j &lt; strip.size() &amp;&amp;
+             (strip[j].y - strip[i].y) &lt; minDist; ++j)
+            minDist = min(minDist, dist(strip[i], strip[j]));
+    return minDist;
+}
+
+double closestUtil(vector&lt;Point&gt;& pts, int left, int right) {
+    if (right - left &lt;= 3) return bruteForce(pts, left, right);
+    int mid = left + (right - left) / 2;
+    double dLeft = closestUtil(pts, left, mid);
+    double dRight = closestUtil(pts, mid + 1, right);
+    double d = min(dLeft, dRight);
+    vector&lt;Point&gt; strip;
+    for (int i = left; i &lt;= right; i++)
+        if (fabs(pts[i].x - pts[mid].x) &lt; d)
+            strip.push_back(pts[i]);
+    return min(d, stripClosest(strip, d));
+}
+
+double closestPair(vector&lt;Point&gt;& pts) {
+    sort(pts.begin(), pts.end(),
+         [](Point a, Point b){ return a.x &lt; b.x; });
+    return closestUtil(pts, 0, pts.size() - 1);
+}
+
+int main() {
+    vector&lt;Point&gt; pts = {{2.5, 3}, {12, 30}, {40, 50},
+                         {5, 1}, {12, 10}, {3, 4}};
+    cout &lt;&lt; "The smallest distance is: " 
+         &lt;&lt; closestPair(pts);
+}
+    </pre>
+  </section>
+
+  <!-- ===== Complexity Section ===== -->
+  <section class="section alt">
+    <h2>📈 Performance Analysis</h2>
+    <table border="1" cellpadding="10" style="border-collapse: collapse; margin: auto;">
+      <tr>
+        <th>Case</th>
+        <th>Time Complexity</th>
+      </tr>
+      <tr><td>Brute Force</td><td>O(n²)</td></tr>
+      <tr><td>Divide & Conquer</td><td>O(n log n)</td></tr>
+      <tr><td>Space Complexity</td><td>O(n)</td></tr>
+    </table>
+
+    <p style="text-align:center; margin-top:20px;">
+      The Divide & Conquer method reduces comparisons drastically by considering
+      only nearby points near the dividing line.
+    </p>
+  </section>
+
+  <!-- ===== Real-World Applications ===== -->
+  <section class="section">
+    <h2>🌍 Real-World Applications</h2>
+    <ul>
+      <li>🗺️ GPS and navigation systems (finding nearest locations)</li>
+      <li>🤖 Robotics and drone navigation (detecting closest obstacles)</li>
+      <li>🧠 Machine learning (distance-based clustering and KNN filtering)</li>
+      <li>📡 Sensor networks (finding nearby nodes to optimize communication)</li>
+    </ul>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>Created by Innocencia & Bianca | Divide & Conquer Visualizer © 2025</p>
+  </footer>
+
+  <script src="closest_pair.js"></script>
+  <script src="voice.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merge Sort | Divide & Conquer Visualizer</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- ===== Header ===== -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>🧩 Merge Sort Visualization</h1>
+      <p>
+        Learn how <strong>Merge Sort</strong> applies the
+        <em>Divide & Conquer</em> strategy to sort elements efficiently by
+        dividing an array into smaller subarrays, sorting them recursively,
+        and then merging the sorted results.
+      </p>
+      <a href="index.html" class="btn-primary">← Back to Home</a>
+    </div>
+  </header>
+
+  <!-- ===== Theory Section ===== -->
+  <section class="section">
+    <h2>📘 Understanding Merge Sort</h2>
+    <p>
+      Merge Sort is a comparison-based sorting algorithm that follows the
+      <strong>Divide & Conquer</strong> paradigm.
+    </p>
+    <ol>
+      <li><strong>Divide:</strong> Split the array into two halves.</li>
+      <li><strong>Conquer:</strong> Recursively sort each half.</li>
+      <li><strong>Combine:</strong> Merge the sorted halves into a single sorted array.</li>
+    </ol>
+
+    <div class="image-container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Merge-sort-example-300px.gif" alt="Merge Sort Process">
+      <p class="caption">Visual representation of Merge Sort’s recursive splitting and merging.</p>
+    </div>
+  </section>
+
+  <!-- ===== Visualization Section ===== -->
+  <section class="section alt">
+    <h2>🎞️ Visualization</h2>
+    <p>Click the button below to visualize how Merge Sort divides and merges an array step-by-step.</p>
+    <div class="visualizer">
+      <canvas id="mergeCanvas" width="600" height="300"></canvas>
+    </div>
+    <button class="btn-secondary" onclick="startMergeSort()">▶ Start Visualization</button>
+  </section>
+
+  <!-- ===== C++ Code Section ===== -->
+  <section class="section">
+    <h2>💻 Merge Sort in C++</h2>
+    <p>This is a typical implementation of Merge Sort using recursion and arrays.</p>
+
+    <pre>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+void merge(vector&lt;int&gt;& a, int left, int mid, int right) {
+    vector&lt;int&gt; L(a.begin() + left, a.begin() + mid + 1);
+    vector&lt;int&gt; R(a.begin() + mid + 1, a.begin() + right + 1);
+
+    int i = 0, j = 0, k = left;
+    while (i &lt; L.size() &amp;&amp; j &lt; R.size()) {
+        if (L[i] &lt;= R[j]) a[k++] = L[i++];
+        else a[k++] = R[j++];
+    }
+    while (i &lt; L.size()) a[k++] = L[i++];
+    while (j &lt; R.size()) a[k++] = R[j++];
+}
+
+void mergeSort(vector&lt;int&gt;& a, int left, int right) {
+    if (left &gt;= right) return;
+    int mid = left + (right - left) / 2;
+    mergeSort(a, left, mid);
+    mergeSort(a, mid + 1, right);
+    merge(a, left, mid, right);
+}
+
+int main() {
+    vector&lt;int&gt; arr = {38, 27, 43, 3, 9, 82, 10};
+    mergeSort(arr, 0, arr.size() - 1);
+    for (int x : arr) cout &lt;&lt; x &lt;&lt; " ";
+}
+    </pre>
+  </section>
+
+  <!-- ===== Complexity Section ===== -->
+  <section class="section alt">
+    <h2>📈 Performance Analysis</h2>
+    <table border="1" cellpadding="10" style="border-collapse: collapse; margin: auto;">
+      <tr>
+        <th>Case</th>
+        <th>Time Complexity</th>
+      </tr>
+      <tr><td>Best Case</td><td>O(n log n)</td></tr>
+      <tr><td>Average Case</td><td>O(n log n)</td></tr>
+      <tr><td>Worst Case</td><td>O(n log n)</td></tr>
+      <tr><td>Space Complexity</td><td>O(n)</td></tr>
+    </table>
+
+    <p style="text-align:center; margin-top:20px;">
+      Merge Sort is consistently efficient across all cases due to its predictable recursive structure.
+    </p>
+  </section>
+
+  <!-- ===== Real-World Applications ===== -->
+  <section class="section">
+    <h2>🌍 Real-World Applications</h2>
+    <ul>
+      <li>📦 Used in file systems and databases for large-scale data sorting.</li>
+      <li>🧠 Applied in external sorting when data doesn’t fit into memory.</li>
+      <li>📊 Used in parallel computing environments for dividing workloads.</li>
+      <li>💾 Commonly implemented in standard libraries (like C++ STL’s <code>stable_sort()</code>).</li>
+    </ul>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>Created by Innocencia & Bianca| Divide & Conquer Visualizer © 2025</p>
+  </footer>
+
+  <script src="merge_sort.js"></script>
+  <script src="voice.js" defer></script>
+
+</body>
+</html>
