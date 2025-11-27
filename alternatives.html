@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Divide & Conquer Alternatives | Algorithm Comparison</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Alternatives to Divide & Conquer Algorithms</h1>
+      <p>Explore the <strong>other algorithms</strong> that can replace Merge Sort, Binary Search, and Closest Pair of Points — including when to use each one and their pros/cons.</p>
+      <a href="index.html" class="btn-primary">← Back</a>
+    </div>
+  </header>
+
+  <!-- MERGE SORT ALTERNATIVES -->
+  <section class="section">
+    <h2> Alternatives to Merge Sort</h2>
+    <p>Merge Sort is excellent for consistent O(n log n) sorting, but it’s not always the best choice. Below are common alternatives and when you’d prefer each one.</p>
+
+
+
+    <h3>HeapSort</h3>
+    <ul>
+      <li><strong>Advantages:</strong> Guaranteed O(n log n) worst-case; works in-place.</li>
+      <li><strong>Disadvantages:</strong> Slower in practice than Merge Sort; not stable.</li>
+      <li><strong>Use When:</strong> You need predictable worst-case runtime and low memory usage.</li>
+    </ul>
+
+    <h3> Insertion Sort</h3>
+    <ul>
+      <li><strong>Advantages:</strong> Extremely fast for small or nearly sorted arrays.</li>
+      <li><strong>Disadvantages:</strong> Very slow for large datasets (O(n²)).</li>
+      <li><strong>Use When:</strong> Your data is small or nearly sorted. Common in hybrid algorithms.</li>
+    </ul>
+  </section>
+
+  <!-- BINARY SEARCH ALTERNATIVES -->
+  <section class="section alt">
+    <h2> Alternatives to Binary Search</h2>
+    <p>Binary Search is fast and simple, but only works if your data is sorted. Here are alternatives when the dataset or requirements change.</p>
+
+    <h3> Linear Search</h3>
+    <ul>
+      <li><strong>Advantages:</strong> Works on unsorted data; extremely simple.</li>
+      <li><strong>Disadvantages:</strong> Much slower for big data (O(n)).</li>
+      <li><strong>Use When:</strong> The dataset is small or sorting overhead isn’t worth it.</li>
+    </ul>
+
+
+    <h3> Balanced Binary Search Trees </h3>
+    <ul>
+      <li><strong>Advantages:</strong> Supports insert, delete, and search in O(log n).</li>
+      <li><strong>Disadvantages:</strong> More complex to implement; requires pointers/memory.</li>
+      <li><strong>Use When:</strong> The dataset changes a lot and must stay sorted.</li>
+    </ul>
+  </section>
+
+  <!-- CLOSEST PAIR ALTERNATIVES -->
+  <section class="section">
+    <h2> Alternatives to Closest Pair of Points</h2>
+    <p>The Divide & Conquer Closest Pair algorithm is a big improvement over brute force, but here are  some alternatives  that could be used.</p>
+
+    <h3> Brute Force</h3>
+    <ul>
+      <li><strong>Advantages:</strong> Super simple; no complex logic.</li>
+      <li><strong>Disadvantages:</strong> Extremely slow for large n (O(n²)).</li>
+      <li><strong>Use When:</strong> Working with very small datasets (n ≤ 20).</li>
+    </ul>
+
+    <h3> Sweep Line Algorithm</h3>
+    <ul>
+      <li><strong>Advantages:</strong> O(n log n), works for dynamic point sets.</li>
+      <li><strong>Disadvantages:</strong> More complex; harder to implement.</li>
+      <li><strong>Use When:</strong> Points are added/removed during computation.</li>
+    </ul>
+
+    
+
+  <!-- SUMMARY TABLE -->
+  <section class="section alt">
+    <h2>Summary Comparison Table</h2>
+
+    <table>
+      <tr>
+        <th>Problem</th>
+        <th>Algorithm Used</th>
+        <th>Alternatives</th>
+        <th>Why Not the Alternatives?</th>
+      </tr>
+
+      <tr>
+        <td>Sorting</td>
+        <td>Merge Sort</td>
+        <td>HeapSort, Insertion Sort</td>
+        <td>Merge Sort is stable, predictable, and easy to explain.</td>
+      </tr>
+
+      <tr>
+        <td>Searching</td>
+        <td>Binary Search</td>
+        <td>Linear Search,BSTs</td>
+        <td>Binary Search clearly demonstrates Divide & Conquer.</td>
+      </tr>
+
+      <tr>
+        <td>Geometry</td>
+        <td>Closest Pair</td>
+        <td>Brute Force, Sweep Line</td>
+        <td>Closest Pair shows a big jump from O(n²) → O(n log n).</td>
+      </tr>
+    </table>
+
+    <p>This table gives a quick view of why we chose Divide & Conquer algorithms and where other algorithms fit better depending on the situation.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Created by Innocencia & Bianca</p>
+  </footer>
+
+</body>
+</html>
