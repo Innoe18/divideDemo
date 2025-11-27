@@ -94,7 +94,31 @@
       <li> Low memory devices → Merge Sort needs extra space.</li>
     </ul>
   </section>
+ <!-- ===== C++ Code Section ===== -->
+  <section class="section">
+    <h2>Binary Search in C++</h2>
+    <p>This implementation uses the classic iterative Divide & Conquer approach.</p>
 
+    <pre>
+#include "binarySearch.h"
+#include &lt;vector&gt;
+using namespace std;
+
+int binarySearch(const vector&lt;int&gt;& arr, int target) {
+    int left = 0, right = arr.size() - 1;
+
+    while (left &lt;= right) {
+        int mid = left + (right - left) / 2;
+
+        if (arr[mid] == target) return mid;
+        else if (arr[mid] &lt; target) left = mid + 1;
+        else right = mid - 1;
+    }
+
+    return -1;
+}
+    </pre>
+  </section>
   <section class="section alt">
     <h2>Trade-offs & Alternatives</h2>
 
